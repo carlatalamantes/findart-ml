@@ -18,6 +18,7 @@ export class UploadImageComponent {
   relatedMovement: string = '';
   relatedMovementDescription: string = '';
   loading: boolean = false;
+  success: boolean = true;
 
   breakpoints = {
     // when window width is >= 1024px
@@ -43,12 +44,14 @@ export class UploadImageComponent {
     }
   }
   onFileSubmit() {
-    //this.loading = true;
-    this.getRelatedPaintings('Impressionism');
-   /*  setTimeout(() => {
+    this.loading = true;
+    if(this.success){
+      this.getRelatedPaintings('Impressionism');
+    }
+    setTimeout(() => {
       this.loading = false;
     }, 3000);
- */
+ 
 
   }
 

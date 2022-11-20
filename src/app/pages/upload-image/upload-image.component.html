@@ -1,5 +1,5 @@
 <div class="upload-container">
-    <h1>FindArt</h1>
+    <h1 [routerLink]="['/home']" class="logo_hover">FindArt</h1>
 
     <div class="row-container">
         <div class="input-container">
@@ -12,20 +12,26 @@
         </div>
         <div class="results-container">
             <div *ngIf="!loading; else loadingDiv" class="data-container">
-                <h3>{{relatedMovement}}</h3>
-                <p>{{relatedMovementDescription}}</p>
-                <swiper [slidesPerView]="1" [spaceBetween]="10" [virtual]="true" [scrollbar]="{ draggable: true }"
-                [breakpoints]="breakpoints">
-                    <ng-template swiperSlide *ngFor="let painting of relatedPaintings[0]; let i= index">
-                        <div class="swiper-card">
-                            <img [src]="painting.image" >
-                          <div style="text-align: center">
-                            <h4>{{painting.title}}</h4>
-                            <span>- {{painting.artist}}</span>
-                          </div>
-                        </div>
-                    </ng-template>
-                </swiper>
+                <div *ngIf="success; else errorDiv">
+                    <h3>{{relatedMovement}}</h3>
+                    <p>{{relatedMovementDescription}}</p>
+                    <swiper [slidesPerView]="1" [spaceBetween]="10" [virtual]="true" [scrollbar]="{ draggable: true }"
+                        [breakpoints]="breakpoints">
+                        <ng-template swiperSlide *ngFor="let painting of relatedPaintings[0]; let i= index">
+                            <div class="swiper-card">
+                                <img [src]="painting.image">
+                                <div style="text-align: center">
+                                    <h4>{{painting.title}}</h4>
+                                    <span>- {{painting.artist}}</span>
+                                </div>
+                            </div>
+                        </ng-template>
+                    </swiper>
+                </div>
+                <ng-template #errorDiv>
+                    <h3>We couldn't find a match</h3>
+                    <p>Please upload another painting picture.</p>
+                </ng-template>
             </div>
             <ng-template #loadingDiv>
                 <div class="spinner-container">

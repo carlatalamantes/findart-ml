@@ -2,6 +2,12 @@
     background-color: #111111;
     min-height: 100vh;
 
+    .logo_hover{
+        &:hover{
+            cursor: pointer;
+        }
+    }
+
     h1{
         text-align: center;
     }
@@ -110,7 +116,7 @@
 
             p{
                 font-weight: 400;
-                margin: .5rem 1rem;
+                margin: .5rem 3rem 1rem 0;
                 text-align: justify;
                 line-height: 35px;
                 color: #dee2e6;
@@ -120,9 +126,11 @@
         }
 
         .spinner-container{
+            display: flex;
             align-items: center;
             justify-content: center;
             height: 100%;
+            width: 100%;
         }
 
        
@@ -154,8 +162,13 @@
             width: 90% !important;
         }
 
-        .data-container{
+        .data-container, .spinner-container{
             margin: 2rem 0;
+
+            p{
+            
+               margin: 1rem !important;
+            }
         }
     }
 
