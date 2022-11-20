@@ -1,0 +1,39 @@
+<div class="upload-container">
+    <h1>FindArt</h1>
+
+    <div class="row-container">
+        <div class="input-container">
+            <div style="display: flex; flex-direction: column; align-items:center; width: 100%;">
+                <img [src]="preview || 'https://dicesabajio.com.mx/wp-content/uploads/2021/06/no-image.jpeg'" alt="">
+                <input type="file" (change)="onFileSelected($event)" accept="image/*" />
+            </div>
+            <button type="button" (click)="onFileSubmit()" class="arrow-button">Submit<span class="arrow"></span>
+            </button>
+        </div>
+        <div class="results-container">
+            <div *ngIf="!loading; else loadingDiv" class="data-container">
+                <h3>{{relatedMovement}}</h3>
+                <p>{{relatedMovementDescription}}</p>
+                <swiper [slidesPerView]="1" [spaceBetween]="10" [virtual]="true" [scrollbar]="{ draggable: true }"
+                [breakpoints]="breakpoints">
+                    <ng-template swiperSlide *ngFor="let painting of relatedPaintings[0]; let i= index">
+                        <div class="swiper-card">
+                            <img [src]="painting.image" >
+                          <div style="text-align: center">
+                            <h4>{{painting.title}}</h4>
+                            <span>- {{painting.artist}}</span>
+                          </div>
+                        </div>
+                    </ng-template>
+                </swiper>
+            </div>
+            <ng-template #loadingDiv>
+                <div class="spinner-container">
+                    <mat-spinner [diameter]="100"></mat-spinner>
+                </div>
+            </ng-template>
+        </div>
+    </div>
+
+
+</div>
